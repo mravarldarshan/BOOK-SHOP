@@ -17,7 +17,7 @@
 	<div class="form-container sign-up-container">
 		<!-- add user-->
 		
-		<form action="ragister" methed="post">
+		<form action="/ragister" method="post">
 			@csrf
 			<h1>Create Account</h1>
 			<div class="social-container">
@@ -34,7 +34,7 @@
 	</div>
 	<div class="form-container sign-in-container">
 		<!-- login -->
-		<form action="login" methed="post">
+		<form action="/login" method="POST">
 			@csrf
 			<h1>Sign in</h1>
 			<div class="social-container">

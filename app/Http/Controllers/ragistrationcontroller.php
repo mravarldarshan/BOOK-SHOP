@@ -20,12 +20,12 @@ class ragistrationcontroller extends Controller
             if(Session()->has('name')){
                         return redirect('home');
                      }else{
-                        $req->session()->put('name',$req['name']);
+                        $req->session()->put('user',$req);
                         return view('home');
                      }
     }
     public function login(Request $req){
-        
+        //return "hallo";
        $user = ragistration::where(['email'=>$req->email])->first();
       
        if(!$user || !Hash::check($req->password, $user->password))
@@ -33,15 +33,8 @@ class ragistrationcontroller extends Controller
                 return "username or password is not matched";
        }else{
             $req->session()->put('user',$user);
-           return redirect('/home');
+           return redirect('/');
        }
-        
-      // return $user;
-        //return view('login');
     }
-    public function logout(Request $req){
-        Session()->forget();
-       
-      return view('login');
-    }
+    
 }

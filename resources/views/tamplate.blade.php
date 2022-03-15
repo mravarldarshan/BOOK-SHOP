@@ -1,3 +1,13 @@
+<?php
+use App\Http\Controllers\productcontroller;
+$total=0;
+if(Session::has('user'))
+{
+	$user= session::get('user')['name'];
+  $total= ProductController::cartItem();
+}
+//use session;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +40,8 @@
 	<link rel="stylesheet" href="/css/main.css">
 	<!-- responsive -->
 	<link rel="stylesheet" href="/css/responsive.css">
-
+	<!--slider-->
+	<link rel="stylesheet" href="/css/homepage.css">
 </head>
 <body>
 	
@@ -58,7 +69,7 @@
 						<!-- menu start -->
 						<nav class="main-menu">
 							<ul>
-								<li><a href="/home">Home</a></li>
+								<li><a href="/">Home</a></li>
 								<li><a href="/about">About</a></li>
 								<li><a href="/shop">shop</a></li>
 								<li><a href="/contact">contact</a></li>
@@ -67,9 +78,17 @@
 								<li>
 									<div class="header-icons">
                                         <a href="login"><img src="/img/user.jpg" width="25px" alt=""></a>
+										@if(Session::has('user'))
+										<a href="#">{{Session::get('user')['name']}}</a>
+										@endif															
 										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+										<a href="cartlist">cart({{$total}})</a>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+										@if(Session::has('user'))
 										<a href="/logout">logout</a>
+										@else
+										<a href="/login">login</a>
+										@endif
 									</div>
 								</li>
 							</ul>
